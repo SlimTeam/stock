@@ -448,4 +448,11 @@ class Item_model extends MY_Model
         }
         return $items;
     }
+    
+    public function get_loaned_items(){
+        $id = $this->db->select('item_id')->distinct(true)->get_compiled_select('loan',false);
+        
+        
+        return $this->db->get()->result_array();
+    }
 }

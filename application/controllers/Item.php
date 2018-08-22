@@ -613,6 +613,10 @@ class Item extends MY_Controller {
     $this->display_view('loan/list', $output);
   }
 
+  public function loaned_items(){
+      var_dump($this->item_model->get_loaned_items());
+      $this->display_view('loan/list_all');
+  }
 
   /****************************************************************************
   * Delete a loan
