@@ -450,9 +450,17 @@ class Item_model extends MY_Model
     }
     
     public function get_loaned_items(){
-        $id = $this->db->select('item_id')->distinct(true)->get_compiled_select('loan',false);
+        $this->db->select('item_id')->distinct(true)->where('planned_return_date <= ',date("Y-m-d"))->or_where('real_return_date <= ',date("Y-m-d"))->get_compiled_select('loan',false);
         
+        $select = $this->db->get()->result_array();
+        $ids = array();
         
-        return $this->db->get()->result_array();
+        foreach ($select as $id){
+            $ids[] = $id['item_id'];
+        }
+        
+        $this->db->select()->where_in('item_id',$ids);
+        
+        return $this->db->get('item')->result_array();
     }
 }
