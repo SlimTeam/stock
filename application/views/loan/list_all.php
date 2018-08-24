@@ -1,7 +1,4 @@
 <div class="container">
-    <div class="row">
-        <p>Test</p>
-    </div>
     <div class="table">
         <!-- LIST OF ITEMS -->
         <?php if(empty($items)) { ?>
@@ -26,8 +23,8 @@
             <?php foreach ($items as $item) { ?>
                         <tr>
                 <td>
-                  <a href="<?php echo base_url('/item/view').'/'.$item['item_id'] ?>" style="display:block">
-                    <img src="<?php echo base_url('uploads/images/'.$item['image']); ?>"
+                  <a href="<?php echo base_url('/item/view').'/'.$item->item_id; ?>" style="display:block">
+                    <img src="<?php echo base_url('uploads/images/'.$item->image); ?>"
                          width="100px"
                          alt="<?php html_escape($this->lang->line('field_image')); ?>" />
                   </a>
@@ -36,25 +33,25 @@
                   <?php
                     echo $item->item_condition->bootstrap_label;
                     echo '<br />'.$item->loan_bootstrap_label;
-                    if (!is_null($item['current_loan'])) {
+                    if (!is_null($item->current_loan)) {
                       echo '<br /><h6>'.$item->current_loan->item_localisation.'</h6>';
                     }
                   ?>
                 </td>
                 <td>
-                  <a href="<?php echo base_url('/item/view').'/'.$item['item_id'] ?>" style="display:block"><?php echo html_escape($item['name']); ?></a>
-                  <h6><?php echo html_escape($item['description']); ?></h6>
+                  <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block"><?php echo html_escape($item->name); ?></a>
+                  <h6><?php echo html_escape($item->description); ?></h6>
                 </td>
                 <td><?php echo html_escape($item->stocking_place->name); ?></td>
                 <td>
-                  <a href="<?php echo base_url('/item/view').'/'.$item['item_id'] ?>" style="display:block"><?php echo html_escape($item['inventory_number_complete']); ?></a>
-                  <a href="<?php echo base_url('/item/view').'/'.$item['item_id'] ?>" style="display:block"><?php echo html_escape($item['serial_number']); ?></a>
+                  <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block"><?php echo html_escape($item->inventory_number_complete); ?></a>
+                  <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block"><?php echo html_escape($item->serial_number); ?></a>
                 </td>
                 <td>
                   <!-- DELETE ACCESS RESTRICTED FOR ADMINISTRATORS ONLY -->
                   <?php
                   if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['user_access'] >= ACCESS_LVL_ADMIN) { ?>
-                    <a href="<?php echo base_url('/item/delete').'/'.$item['item_id'] ?>" class="close" title="Supprimer l'objet">×</a>
+                    <a href="<?php echo base_url('/item/delete').'/'.$item->item_id ?>" class="close" title="Supprimer l'objet">×</a>
                   <?php } ?>
                 </td>
               </tr>
@@ -64,4 +61,3 @@
         <?php } ?>
     </div>
 </div>
-<pre><?= var_dump($items)?></pre>
