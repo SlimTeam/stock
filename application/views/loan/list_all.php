@@ -1,4 +1,8 @@
 <div class="container">
+    <div class="row">
+        <a href="<?php echo base_url("item/loaned_items/is_late"); ?>" class="btn btn-primary top-margin"><?php echo html_escape($this->lang->line('btn_late_loan')); ?></a>
+        <a href="<?php echo base_url("item/loaned_items/"); ?>" class="btn btn-default top-margin"><?php echo html_escape($this->lang->line('btn_remove_filters')); ?></a>
+    </div>
     <div class="table">
         <!-- LIST OF ITEMS -->
         <?php if(empty($items)) { ?>
@@ -21,7 +25,7 @@
           </thead>
           <tbody>
             <?php foreach ($items as $item) { ?>
-                        <tr>
+            <tr>
                 <td>
                   <a href="<?php echo base_url('/item/view').'/'.$item->item_id; ?>" style="display:block">
                     <img src="<?php echo base_url('uploads/images/'.$item->image); ?>"

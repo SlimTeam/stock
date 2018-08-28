@@ -613,8 +613,9 @@ class Item extends MY_Controller {
     $this->display_view('loan/list', $output);
   }
 
-  public function loaned_items(){
-      $output['items'] = $this->item_model->get_loaned_items();
+  public function loaned_items($filter = NULL){
+      
+      $output['items'] = $this->item_model->get_loaned_items($filter);
       
       $this->load->model('item_condition_model');
       $output['item_conditions'] = $this->item_condition_model->dropdown('name');

@@ -449,14 +449,17 @@ class Item_model extends MY_Model
         return $items;
     }
     
-    public function get_loaned_items(){
-        $this->db->select('item_id')->distinct(true)
-                 ->where('real_return_date IS NULL')
-                 ->get_compiled_select('loan', false);
+    public function get_loaned_items($filter){
+        
+        $this->db->select('item_id')
+                 ->distinct(true)
+                 ->where('real_return_date IS NULL');
+        if($filter == 'is_late'){
+            $this->db->where('planned_return_date < ',date('Y-m-d'));
+        }
+        $this->db->get_compiled_select('loan', false);
         
         $loans = $this->db->get()->result_array();
-        
-        // var_dump($loans);
         
         $items = array();
         

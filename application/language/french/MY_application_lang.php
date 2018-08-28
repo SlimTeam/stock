@@ -109,6 +109,7 @@ $lang['btn_create_inventory_control']   = 'Nouveau contrôle';
 $lang['btn_inventory_control_history']  = 'Historique contrôles';
 $lang['btn_loans_history']              = 'Historique des prêts';
 $lang['btn_create_loan']                = 'Ajouter un prêt';
+$lang['btn_late_loan']                  = 'Prêts en retard';
 $lang['btn_loan_list']                  = 'Objets en prêts';
 $lang['btn_submit_filters']             = 'Appliquer les filtres';
 $lang['btn_remove_filters']             = 'Supprimer les filtres';
