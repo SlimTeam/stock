@@ -1,7 +1,14 @@
 <div class="container">
     <div class="row">
-        <a href="<?php echo base_url("item/loaned_items/is_late"); ?>" class="btn btn-primary top-margin"><?php echo html_escape($this->lang->line('btn_late_loan')); ?></a>
-        <a href="<?php echo base_url("item/loaned_items/"); ?>" class="btn btn-default top-margin"><?php echo html_escape($this->lang->line('btn_remove_filters')); ?></a>
+    <!-- FILTERS FORM -->
+      <form id="filters" method="get">
+          <p class="bg-primary">&nbsp;<?php echo html_escape($this->lang->line('text_search_filters')); ?></p>
+          <div class="checkbox">
+              <label><input type="checkbox" name="is_late"><?=$this->lang->line('field_late_loan')?></label>
+          </div>
+          <button type="submit" class="btn btn-primary top-margin"><?php echo html_escape($this->lang->line('btn_submit_filters')); ?></button>
+          <a href="<?php echo base_url("item/loaned_items/"); ?>" class="btn btn-default top-margin"><?php echo html_escape($this->lang->line('btn_remove_filters')); ?></a>
+      </form>
     </div>
     <div class="table">
         <!-- LIST OF ITEMS -->

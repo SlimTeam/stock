@@ -613,8 +613,12 @@ class Item extends MY_Controller {
     $this->display_view('loan/list', $output);
   }
 
-  public function loaned_items($filter = NULL){
+  public function loaned_items(){
       
+      $filter = '';
+      if(isset($_GET['is_late'])){
+          $filter = 'is_late';
+      }
       $output['items'] = $this->item_model->get_loaned_items($filter);
       
       $this->load->model('item_condition_model');
