@@ -144,38 +144,43 @@
     </div>
   </div>
     <?php foreach ($items as $item) { ?>
-    <div class="row" style="border-bottom: black solid 1px">
-    <div class="col-sm-3">
+    <div class="row" style="border-bottom: black solid 1px;padding: 5px 0px 5px 0px;">
+    <div class="col-sm-3" style="display: flex;">
       <div class="col-sm-5">
-      <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block">
-        <img src="<?php echo base_url('uploads/images/'.$item->image); ?>"
-          width="100px"
-          alt="<?php html_escape($this->lang->line('field_image')); ?>" />
-      </a>
-    </div><div class="col-sm-1">
-      <?php
-        echo $item->item_condition->bootstrap_label;
-        echo '<br />'.$item->loan_bootstrap_label;
-        if (!is_null($item->current_loan)) {
-          echo '<br /><h6>'.$item->current_loan->item_localisation.'</h6>';
-        }
-      ?>
-    </div></div>
-    <div class="col-sm-5">
+        <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block;">
+          <img src="<?php echo base_url('uploads/images/'.$item->image); ?>"
+            width="100px"
+            alt="<?php html_escape($this->lang->line('field_image')); ?>" />
+        </a>
+      </div><div class="col-sm-1">
+        <?php
+          echo $item->item_condition->bootstrap_label;
+          echo '<br />'.$item->loan_bootstrap_label;
+          if (!is_null($item->current_loan)) {
+            echo '<h6>'.$item->current_loan->item_localisation.'</h6>';
+          }
+        ?>
+      </div>
+    </div>
+    <div class="col-sm-4" style="margin-left: 10px;margin-right: 6%">
       <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block"><?php echo html_escape($item->name); ?></a>
       <h6><?php echo html_escape($item->description); ?></h6>
     </div>
-    <div class="col-sm-4"><div class="col-sm-6">
-        <?php echo html_escape($item->stocking_place->name); ?></div>
-      <div class="col-sm-4">
-        <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>" style="display:block"><?php echo html_escape($item->inventory_number_complete); ?></a></div>
-      <br><?php echo html_escape($item->serial_number); ?></a>
+    <div class="col-sm-3">
+      <span class="col-sm-9">
+        <?php echo html_escape($item->stocking_place->name); ?>
+      </span>
+      <span class="col-sm-3" style="padding-left: 15px;float: right;">
+        <a href="<?php echo base_url('/item/view').'/'.$item->item_id ?>"><?php echo html_escape($item->inventory_number_complete); ?>
+        <br><?php echo html_escape($item->serial_number); ?></a>
+      </span>
       <!-- DELETE ACCESS RESTRICTED FOR ADMINISTRATORS ONLY -->
       <div class="col-sm-auto">
-      <?php
-        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['user_access'] >= ACCESS_LVL_ADMIN) { ?>
+        <?php
+          if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && $_SESSION['user_access'] >= ACCESS_LVL_ADMIN) { ?>
         <a href="<?php echo base_url('/item/delete').'/'.$item->item_id ?>" class="close" title="Supprimer l'objet">×</a>
-        <?php } ?></div>
+        <?php } ?>
+      </div>
     </div>
   </div>
   <?php } ?>
